@@ -55,7 +55,12 @@ const StarContainer = () => {
     const fn = () => setDrag(false);
 
     window.addEventListener("mouseup", fn);
-    return () => window.removeEventListener("mouseup", fn);
+    window.addEventListener("pointerup", fn);
+
+    return () => {
+      window.removeEventListener("mouseup", fn);
+      window.removeEventListener("pointerup", fn);
+    }
   }, []);
 
   useEffect(() => {
@@ -64,7 +69,7 @@ const StarContainer = () => {
 
 
   return (
-    <Wrapper onMouseDown={() => setDrag(true)}>
+    <Wrapper onMouseDown={() => setDrag(true)} onPointerDown={() => setDrag(true)}>
       <Canvas>
         <ambientLight intensity={1} />
         <directionalLight intensity={1} position={[1, -1, 1]} castShadow />
