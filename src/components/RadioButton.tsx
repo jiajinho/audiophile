@@ -14,11 +14,11 @@ export const Wrapper = styled.div(({ $active }: { $active: boolean }) => `
 `);
 
 const CSSRadio = `
-  width: 8rem;
-  height: 8rem;
+  width: 9rem;
+  height: 9rem;
   border-radius: 50%;
-  top: 1px;
-  left: 0px;
+  top: 0.5rem;
+  left: 0;
   position: relative;
   content: '';
   display: inline-block;
