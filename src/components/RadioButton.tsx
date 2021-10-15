@@ -14,10 +14,10 @@ export const Wrapper = styled.div(({ $active }: { $active: boolean }) => `
 `);
 
 const CSSRadio = `
-  width: 9rem;
-  height: 9rem;
+  width: 10rem;
+  height: 10rem;
   border-radius: 50%;
-  top: 0.5rem;
+  top: 0rem;
   left: 0;
   position: relative;
   content: '';
@@ -31,14 +31,14 @@ const Input = styled.input`
   ::after {
     ${CSSRadio}
     background-color: white;
-    border: 2rem solid white;
+    border: 2.5rem solid white;
     box-shadow: 0 0 0 1.5rem #d1d3d1;
   }
 
   :checked::after {
     ${CSSRadio}
     background-color: var(--theme-primary);
-    border: 2rem solid white;
+    border: 2.5rem solid white;
     box-shadow: 0 0 0 1.5rem var(--theme-primary);
   }
 `;
