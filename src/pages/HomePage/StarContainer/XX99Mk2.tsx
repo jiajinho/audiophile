@@ -40,15 +40,23 @@ type GLTFResult = GLTF & {
   }
 }
 
-const XX99Mk2 = () => {
+const XX99Mk2 = ({ viewportIsSm }: { viewportIsSm: boolean }) => {
+  /**
+   * Hooks
+   */
   const { nodes, materials } = useGLTF(path) as any as GLTFResult;
   const three = useThree();
 
   useEffect(() => {
-    //Re-adjust the camera position of OrbitControl
-    three.camera.position.set(0, 0, 10);
-  }, [three]);
+    const zIndex = viewportIsSm ? 8.5 : 10;
 
+    //Re-adjust the camera position of OrbitControl
+    three.camera.position.set(0, 0, zIndex);
+  }, [three, viewportIsSm]);
+
+  /**
+   * Render
+   */
   return (
     <group dispose={null}>
       <mesh

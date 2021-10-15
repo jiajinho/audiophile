@@ -138,14 +138,15 @@ const CartModal = ({ top, expandCart, expandNav, setExpandCart, maskAPI }: {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    let totalPrice = 0;
+    if (Object.keys(flattenedProductData).length > 0) {
+      let totalPrice = 0;
 
-    for (const [productID, itemNumber] of Object.entries(cartData)) {
-      totalPrice += flattenedProductData[productID].price * itemNumber;
+      for (const [productID, itemNumber] of Object.entries(cartData)) {
+        totalPrice += flattenedProductData[productID].price * itemNumber;
+      }
+
+      setTotalPrice(totalPrice);
     }
-
-    setTotalPrice(totalPrice);
-
   }, [cartData, flattenedProductData]);
 
   useEffect(() => {

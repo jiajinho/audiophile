@@ -40,9 +40,7 @@ const Body = styled.div`
 `;
 
 function App() {
-
   const [OrderSuccessModal, open, close] = _OrderSuccessModal();
-
 
   return (
     <OrderSuccessModalContext.Provider value={[OrderSuccessModal, open, close]}>

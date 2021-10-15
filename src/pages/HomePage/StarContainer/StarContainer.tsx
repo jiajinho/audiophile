@@ -1,19 +1,21 @@
-import React, { useEffect, useState, Suspense } from 'react';
+import React, { useEffect, useState, Suspense, useContext } from 'react';
 import styled from 'styled-components/macro';
 import { useSpring, animated } from 'react-spring';
 import { Canvas } from '@react-three/fiber';
-import { OrbitControls } from '@react-three/drei';
+import { OrbitControls, useProgress } from '@react-three/drei';
 import { useHistory } from 'react-router-dom';
 //import { useControls } from 'leva';
 
 import { viewport } from '../../../common/config';
-import XX99Mk2 from './XX99Mk2';
+import { MediaContext } from '../../../common/contexts';
 import Button, { Wrapper as _Button } from '../../../components/Button';
+import Loading, { Wrapper as _Loading } from '../../../common/svg/Loading';
+import XX99Mk2 from './XX99Mk2';
 
 const Wrapper = styled.div`
   position: relative;
   margin-bottom: 75rem;
-  height: 450rem;
+  height: 480rem;
 
   background: black;
   cursor: grab;
@@ -43,14 +45,36 @@ const TextContainer = styled(animated.div)(({ $drag }: { $drag: boolean }) => `
   }
 `);
 
+const LoadingContainer = styled.div(({ $loaded }: { $loaded: boolean }) => `
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+
+  background: black;
+  display: ${$loaded ? "none" : "flex"};
+  align-items: center;
+  justify-content: center;
+
+  ${_Loading} {
+    height: 80rem;
+  }
+`);
+
 const StarContainer = () => {
+  /**
+   * Hooks
+   */
   const history = useHistory();
+  const { sm } = useContext(MediaContext);
   const [drag, setDrag] = useState(false);
 
-  const [spring, api] = useSpring(() => ({
-    opacity: 1
-  }));
+  const { progress } = useProgress();
 
+  const [textSpring, textAPI] = useSpring(() => ({ opacity: 1 }));
+
+  //Leva
   // const { camera1, camera2 } = useControls({
   //   camera1: { x: 1, y: -1, z: 1 },
   //   camera2: { x: -1, y: 1, z: -1 }
@@ -69,10 +93,12 @@ const StarContainer = () => {
   }, []);
 
   useEffect(() => {
-    api.start({ opacity: drag ? 0 : 1 });
-  }, [drag, api]);
+    textAPI.start({ opacity: drag ? 0 : 1 });
+  }, [drag, textAPI]);
 
-
+  /**
+   * Render
+   */
   return (
     <Wrapper
       onMouseDown={() => setDrag(true)}
@@ -90,14 +116,14 @@ const StarContainer = () => {
         />
 
         <Suspense fallback={null}>
-          <XX99Mk2 />
+          <XX99Mk2 viewportIsSm={sm} />
         </Suspense>
       </Canvas>
 
       <TextContainer
         onMouseDown={e => e.stopPropagation()}
         onPointerDown={e => e.stopPropagation()}
-        style={spring}
+        style={textSpring}
         $drag={drag}
       >
         <p className="overline">NEW PRODUCT</p>
@@ -113,6 +139,10 @@ const StarContainer = () => {
           onClick={() => history.push('/headphones/xx99-mk2')}
         />
       </TextContainer>
+
+      <LoadingContainer $loaded={progress === 100}>
+        <Loading />
+      </LoadingContainer>
     </Wrapper>
   );
 
