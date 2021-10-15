@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const path = "/static/gltf/xx99mk2_v1.glb";
+const path = "/static/gltf/xx99mk2_compressed.glb";
 
 type GLTFResult = GLTF & {
   nodes: {

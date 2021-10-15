@@ -6,18 +6,23 @@ import { OrbitControls } from '@react-three/drei';
 import { useHistory } from 'react-router-dom';
 //import { useControls } from 'leva';
 
+import { viewport } from '../../../common/config';
 import XX99Mk2 from './XX99Mk2';
 import Button, { Wrapper as _Button } from '../../../components/Button';
 
 const Wrapper = styled.div`
   position: relative;
   margin-bottom: 75rem;
-  height: 550rem;
+  height: 450rem;
 
   background: black;
   cursor: grab;
 
   &:active { cursor: grabbing }
+
+  @media screen and (min-width: ${viewport.sm}) {
+    height: 550rem;
+  }
 `;
 
 const TextContainer = styled(animated.div)(({ $drag }: { $drag: boolean }) => `
@@ -69,7 +74,10 @@ const StarContainer = () => {
 
 
   return (
-    <Wrapper onMouseDown={() => setDrag(true)} onPointerDown={() => setDrag(true)}>
+    <Wrapper
+      onMouseDown={() => setDrag(true)}
+      onPointerDown={() => setDrag(true)}
+    >
       <Canvas>
         <ambientLight intensity={1} />
         <directionalLight intensity={1} position={[1, -1, 1]} castShadow />
@@ -86,9 +94,9 @@ const StarContainer = () => {
         </Suspense>
       </Canvas>
 
-
       <TextContainer
         onMouseDown={e => e.stopPropagation()}
+        onPointerDown={e => e.stopPropagation()}
         style={spring}
         $drag={drag}
       >
