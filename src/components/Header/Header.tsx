@@ -201,7 +201,11 @@ const Header = () => {
           <img
             src="/static/shared/audiophile.svg"
             alt="Audiophile logo"
-            onClick={() => history.push("/")}
+            onClick={() => {
+              history.push("/");
+              setExpandCart(false);
+              setExpandNav(false);
+            }}
           />
         </Audiophile>
 

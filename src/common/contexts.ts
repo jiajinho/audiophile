@@ -85,6 +85,7 @@ export {
 }
 
 export type {
+  Media,
   ProductData,
   FlattenedProductData,
   FlattenedProduct,

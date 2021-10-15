@@ -6,7 +6,7 @@ import { OrbitControls, useProgress } from '@react-three/drei';
 import { useHistory } from 'react-router-dom';
 //import { useControls } from 'leva';
 
-import { viewport } from '../../../common/config';
+import { viewport, css } from '../../../common/config';
 import { MediaContext } from '../../../common/contexts';
 import Button, { Wrapper as _Button } from '../../../components/Button';
 import Loading, { Wrapper as _Loading } from '../../../common/svg/Loading';
@@ -15,7 +15,7 @@ import XX99Mk2 from './XX99Mk2';
 const Wrapper = styled.div`
   position: relative;
   margin-bottom: 75rem;
-  height: 480rem;
+  height: 500rem;
 
   background: black;
   cursor: grab;
@@ -43,6 +43,13 @@ const TextContainer = styled(animated.div)(({ $drag }: { $drag: boolean }) => `
   ${_Button} {
     margin: 30rem 0;
   }
+
+  @media screen and (min-width: ${viewport.lg}) {
+    left: ${css.window.horizontalPadding.lg};
+    transform: translate(0, -50%);
+    width: 37%;
+    text-align: left;
+  }
 `);
 
 const LoadingContainer = styled.div(({ $loaded }: { $loaded: boolean }) => `
@@ -67,7 +74,7 @@ const StarContainer = () => {
    * Hooks
    */
   const history = useHistory();
-  const { sm } = useContext(MediaContext);
+  const media = useContext(MediaContext);
   const [drag, setDrag] = useState(false);
 
   const { progress } = useProgress();
@@ -93,8 +100,8 @@ const StarContainer = () => {
   }, []);
 
   useEffect(() => {
-    textAPI.start({ opacity: drag ? 0 : 1 });
-  }, [drag, textAPI]);
+    textAPI.start({ opacity: drag && !media.lg ? 0 : 1 });
+  }, [drag, media, textAPI]);
 
   /**
    * Render
@@ -104,7 +111,7 @@ const StarContainer = () => {
       onMouseDown={() => setDrag(true)}
       onPointerDown={() => setDrag(true)}
     >
-      <Canvas>
+      <Canvas style={{ width: media.lg ? "140%" : "100%" }}>
         <ambientLight intensity={1} />
         <directionalLight intensity={1} position={[1, -1, 1]} castShadow />
         <directionalLight intensity={1} position={[-1, 1, -1]} castShadow />
@@ -116,7 +123,7 @@ const StarContainer = () => {
         />
 
         <Suspense fallback={null}>
-          <XX99Mk2 viewportIsSm={sm} />
+          <XX99Mk2 media={media} />
         </Suspense>
       </Canvas>
 

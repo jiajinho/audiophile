@@ -3,6 +3,8 @@ import { useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
+import { Media } from '../../../common/contexts';
+
 const path = "/static/gltf/xx99mk2_compressed.glb";
 
 type GLTFResult = GLTF & {
@@ -40,7 +42,7 @@ type GLTFResult = GLTF & {
   }
 }
 
-const XX99Mk2 = ({ viewportIsSm }: { viewportIsSm: boolean }) => {
+const XX99Mk2 = ({ media }: { media: Media }) => {
   /**
    * Hooks
    */
@@ -48,11 +50,12 @@ const XX99Mk2 = ({ viewportIsSm }: { viewportIsSm: boolean }) => {
   const three = useThree();
 
   useEffect(() => {
-    const zIndex = viewportIsSm ? 8.5 : 10;
+    const { sm } = media;
+    const zIndex = sm ? 8.5 : 10;
 
     //Re-adjust the camera position of OrbitControl
     three.camera.position.set(0, 0, zIndex);
-  }, [three, viewportIsSm]);
+  }, [three, media]);
 
   /**
    * Render
