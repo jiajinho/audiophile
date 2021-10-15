@@ -110,10 +110,10 @@ const PrimaryHighlight = ({ imgSrc, imgAlt, title, description, linkTo }: {
         />
 
         <SonicEllipse radius={150} delay={0} />
-        <SonicEllipse radius={250} delay={300} />
-        <SonicEllipse radius={275} delay={600} />
-        <SonicEllipse radius={400} delay={900} />
-        <SonicEllipse radius={650} delay={1200} />
+        <SonicEllipse radius={250} delay={200} />
+        <SonicEllipse radius={275} delay={500} />
+        <SonicEllipse radius={400} delay={750} />
+        <SonicEllipse radius={650} delay={900} />
       </ImageContainer>
 
       <TextContainer>

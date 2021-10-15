@@ -14,7 +14,7 @@ export const Wrapper = styled.svg`
   :hover path { fill: var(--theme-primary) }
 `;
 
-const Twitter = () => (
+const Twitter = ({ onClick }: { onClick?: () => void }) => (
   <Wrapper
     version="1.1"
     id="Capa_1"
@@ -24,6 +24,7 @@ const Twitter = () => (
     viewBox="0 0 512 512"
     style={{ enableBackground: 'new 0 0 512 512' } as React.CSSProperties}
     xmlSpace="preserve"
+    onClick={onClick}
   >
     <path
       d="M512,97.248c-19.04,8.352-39.328,13.888-60.48,16.576c21.76-12.992,38.368-33.408,46.176-58.016

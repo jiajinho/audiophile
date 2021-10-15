@@ -16,7 +16,7 @@ export const Wrapper = styled.svg`
   }
 `;
 
-const Instagram = () => (
+const Instagram = ({ onClick }: { onClick?: () => void }) => (
   <Wrapper
     version="1.1"
     id="Layer_1"
@@ -26,6 +26,7 @@ const Instagram = () => (
     viewBox="0 0 551.034 551.034"
     style={{ enableBackground: 'new 0 0 551.034 551.034' } as React.CSSProperties}
     xmlSpace="preserve"
+    onClick={onClick}
   >
     <g>
       <path

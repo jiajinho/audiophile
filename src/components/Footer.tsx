@@ -6,6 +6,7 @@ import Nav from './Nav';
 import Facebook, { Wrapper as _Facebook } from '../common/svg/Facebook';
 import Instagram, { Wrapper as _Instagram } from '../common/svg/Instagram';
 import Twitter, { Wrapper as _Twitter } from '../common/svg/Twitter';
+import { toast } from 'react-toastify';
 
 const Wrapper = styled.footer`
   position: relative;
@@ -163,7 +164,9 @@ const Footer = () => (
         </Copyright>
 
         <SocialMedia>
-          <Facebook /> <Instagram /> <Twitter />
+          <Facebook onClick={() => toast("🦄 Clicked on Facebook!")} />
+          <Instagram onClick={() => toast("🦄 Clicked on Instagram!")} />
+          <Twitter onClick={() => toast("🦄 Clicked on Twitter!")} />
         </SocialMedia>
       </CopyrightContainer>
     </BottomContainer>

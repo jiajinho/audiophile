@@ -76,7 +76,7 @@ const TextField = ({ id, label, placeholder = "", value, onChange, type = "text"
 
     else if (focusErrorPredicates) verifyErrors(focusErrorPredicates);
 
-  }, [value]);
+  }, [value, focusErrorPredicates]);
 
   /**
    * Not hook

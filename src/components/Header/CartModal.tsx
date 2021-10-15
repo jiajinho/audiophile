@@ -170,25 +170,12 @@ const CartModal = ({ top, expandCart, expandNav, setExpandCart, maskAPI }: {
   }
 
   const handleCheckout = () => {
-    let hasItem = false;
-
-    for (const [, itemNumber] of Object.entries(cartData)) {
-      if (itemNumber > 1) {
-        hasItem = true;
-        break;
-      }
-    }
-
     history.push("/checkout");
+    window.scrollTo(0, 0);
     setExpandCart(false);
-
-    // hasItem ?
-    //   history.push("/checkout") :
-    //   toast.info("Your cart is empty! \nTry adding some items :)");
   }
 
   const totalItem = Object.keys(cartData).length;
-
 
   return (
     <Wrapper
@@ -201,7 +188,7 @@ const CartModal = ({ top, expandCart, expandNav, setExpandCart, maskAPI }: {
         <p id="remove-all" onClick={() => setCartData({})}>Remove all</p>
       </Title>
 
-      {totalItem ?
+      {totalItem && flattenedProductData && Object.keys(flattenedProductData).length > 0 ?
         <>
           {Object.entries(cartData).map(([productID, itemNumber]) =>
             <ItemContainer key={productID}>

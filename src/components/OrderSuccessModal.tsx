@@ -204,7 +204,7 @@ const OrderSuccessModal = (): [
         display: display ? "flex" : "none"
       })
     });
-  }, [display]);
+  }, [display, api]);
 
   /**
    * Not hook
@@ -252,19 +252,22 @@ const OrderSuccessModal = (): [
       },
       items: { ...cartDataCopy },
       totalPrice: totalPrice + 50
-    }).then(() => {
-      //Promise fulfilled
-      setTransactionState("ok");
-      setFormData({
-        name: "", email: "", phone: "",
-        address: "", zip: "", city: "", country: "",
-        paymentMethod: "", eMoneyNum: "", eMoneyPIN: ""
-      });
-    }, () => {
-      //Promise rejected
-      setTransactionState("error");
-      setCartData(cartDataCopy);
-    });
+    }).then(
+      () => {
+        //Promise fulfilled
+        setTransactionState("ok");
+        setFormData({
+          name: "", email: "", phone: "",
+          address: "", zip: "", city: "", country: "",
+          paymentMethod: "", eMoneyNum: "", eMoneyPIN: ""
+        });
+      },
+      () => {
+        //Promise rejected
+        setTransactionState("error");
+        setCartData(cartDataCopy);
+      }
+    );
   }
 
   const close = () => {

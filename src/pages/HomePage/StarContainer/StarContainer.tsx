@@ -60,7 +60,7 @@ const StarContainer = () => {
 
   useEffect(() => {
     api.start({ opacity: drag ? 0 : 1 });
-  }, [drag]);
+  }, [drag, api]);
 
 
   return (

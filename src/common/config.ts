@@ -71,6 +71,7 @@ const strings = {
   }
 }
 
+//Placeholder data
 const data = {
   headphones: {
     "xx99-mk2": {

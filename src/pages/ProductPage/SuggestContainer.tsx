@@ -4,8 +4,8 @@ import { useHistory } from 'react-router-dom';
 import { animated, useSpring } from 'react-spring';
 import { useDrag } from 'react-use-gesture';
 
-import { FlattenedProductDataContext, FlattenedProductData, FlattenedProduct } from '../../common/contexts';
-import Loading, { Wrapper as _Loading } from '../../common/svg/Loading';
+import { FlattenedProductDataContext, FlattenedProduct } from '../../common/contexts';
+import Loading from '../../common/svg/Loading';
 import ImageCard, { Wrapper as _ImageCard, Image } from '../../components/ImageCard';
 import Button from '../../components/Button';
 
@@ -88,6 +88,8 @@ const SuggestContainer = () => {
 
   const [shuffledProductList, setShuffledProductList] = useState<FlattenedProductWithID[]>([]);
 
+  const [spring, api] = useSpring(() => ({ x: "0rem" }));
+
   useEffect(() => {
     //Shuffle list
     const productList: FlattenedProductWithID[] = [];
@@ -117,12 +119,11 @@ const SuggestContainer = () => {
 
     api.start({ x: "0rem" });
 
-  }, [flattenedProductData]);
+  }, [flattenedProductData, api]);
 
   /**
    * Animation hooks
    */
-  const [spring, api] = useSpring(() => ({ x: "0rem" }));
 
   const gesture = useDrag(state => {
     if (shuffledProductList.length && state.active) {
@@ -154,6 +155,13 @@ const SuggestContainer = () => {
     })
   });
 
+  /**
+   * Not hook
+   */
+  const handleProductClick = (category: string, productID: string) => {
+    history.push(`/${category}/${productID}`);
+    window.scrollTo(0, 0);
+  }
 
   /**
    * Render
@@ -172,15 +180,15 @@ const SuggestContainer = () => {
                   imgSrc={`/static/${item.category}/${item.productID}/lg.png`}
                   imgAlt={item.productID}
                   draggable={false}
-                  onTap={() => history.push(`/${item.category}/${item.productID}`)}
+                  onTap={() => handleProductClick(item.category, item.productID)}
                 />
 
                 <h3>{item.name.toUpperCase()}</h3>
 
                 <Button
                   text="SEE PRODUCT"
-                  onClick={() => history.push(`/${item.category}/${item.productID}`)}
                   theme="primary"
+                  onClick={() => handleProductClick(item.category, item.productID)}
                 />
               </Card>
             )}

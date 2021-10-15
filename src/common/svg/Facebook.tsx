@@ -14,7 +14,7 @@ export const Wrapper = styled.svg`
   :hover path { fill: var(--theme-primary) }
 `;
 
-const Facebook = () => (
+const Facebook = ({ onClick }: { onClick?: () => void }) => (
   <Wrapper
     version="1.1"
     id="Capa_1"
@@ -25,6 +25,7 @@ const Facebook = () => (
     viewBox="0 0 60.734 60.733"
     style={{ enableBackground: 'new 0 0 60.734 60.733' } as React.CSSProperties}
     xmlSpace="preserve"
+    onClick={onClick}
   >
     <g>
       <path

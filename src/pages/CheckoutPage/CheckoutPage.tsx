@@ -117,7 +117,9 @@ const CheckoutPage = () => {
       toast.error("Please resolve all errors first");
 
     } else { //All conditions passed
+
       openOrderSuccessModal(formData, setFormData);
+
     }
   }
 

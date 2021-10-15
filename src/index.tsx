@@ -25,6 +25,7 @@ import {
 } from './common/contexts';
 
 //Check for environment variables before initializing app
+if (!(process.env.REACT_APP_ENV === 'dev' || process.env.REACT_APP_ENV === 'prod')) throw Error("REACT_APP_ENV not set to 'prod' or 'dev'");
 if (!process.env.REACT_APP_JWT_SECRET) throw Error("REACT_APP_JWT_SECRET not defined");
 
 if (!process.env.REACT_APP_FIREBASE_APIKEY) throw Error("REACT_APP_FIREBASE_APIKEY not defined");
@@ -66,26 +67,29 @@ const Root = () => {
   useEffect(() => {
     readLocalStorageCart();
 
-    // const firebaseListener = onValue(ref(getDatabase(), "/products"), (snapshot) => {
-    //   setProductData(snapshot.val());
-    // });
+    if (process.env.REACT_APP_ENV === 'prod') {
+      const firebaseListener = onValue(ref(getDatabase(), "/products"), (snapshot) => {
+        setProductData(snapshot.val());
+      });
 
-    // //Unsubscribe the listener
-    // return () => firebaseListener();
-
-    setProductData(data);
+      //Unsubscribe the listener
+      return () => firebaseListener();
+    }
+    else setProductData(data);
   }, []);
 
   useEffect(() => {
-    const flattenedList: FlattenedProductData = {};
+    if (productData) {
+      const flattenedList: FlattenedProductData = {};
 
-    for (const [category, products] of Object.entries(data)) {
-      for (const [productID, product] of Object.entries(products)) {
-        flattenedList[productID] = { category, ...product }
+      for (const [category, products] of Object.entries(productData)) {
+        for (const [productID, product] of Object.entries(products)) {
+          flattenedList[productID] = { category, ...product }
+        }
       }
-    }
 
-    setFlattenedProductData(flattenedList);
+      setFlattenedProductData(flattenedList);
+    }
   }, [productData]);
 
   useEffect(() => {

@@ -60,7 +60,7 @@ const ProductPage = () => {
     } else if (productData && !productData[category][productID]) {
       history.push("/404");
     }
-  }, [productData, category, productID]);
+  }, [productData, category, productID, history]);
 
 
   return (

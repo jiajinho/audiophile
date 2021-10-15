@@ -1,10 +1,9 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { Switch, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
 import { OrderSuccessModalContext } from './common/contexts';
-import { viewport, css } from './common/config';
 import Header from './components/Header/Header';
 import Footer from './components/Footer';
 import HomePage from './pages/HomePage/HomePage';

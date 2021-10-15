@@ -130,6 +130,7 @@ const CategoryCard = ({ category, imgSrc, imgAlt, linkTo, additionalOnClick }: {
    */
   const handleLinkTo = () => {
     history.push(linkTo);
+    window.scrollTo(0, 0);
     additionalOnClick && additionalOnClick();
   }
 

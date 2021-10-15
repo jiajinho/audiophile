@@ -40,7 +40,6 @@ const Description = styled.p`
 `;
 
 const NotFoundPage = () => {
-
   const history = useHistory();
 
   return (
@@ -51,12 +50,14 @@ const NotFoundPage = () => {
       <Description>{strings.notFound.description}</Description>
       <Button
         text="GO BACK"
-        onClick={() => history.push("/")}
         theme="primary"
+        onClick={() => {
+          history.push("/");
+          window.scrollTo(0, 0);
+        }}
       />
     </Wrapper>
-  )
-
+  );
 }
 
 export default NotFoundPage;

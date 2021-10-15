@@ -66,7 +66,7 @@ const RadioButton = ({ text, value, activeValue, groupName, onChange }: {
     if (inputRef.current) {
       inputRef.current.checked = activeValue === value;
     }
-  }, [activeValue]);
+  }, [activeValue, value]);
 
   /**
    * Not hooks

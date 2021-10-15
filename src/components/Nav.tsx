@@ -37,13 +37,20 @@ const ForwardLink = styled(Link)`
   }
 `;
 
-const Nav = () => (
-  <Wrapper>
-    <ForwardLink to="/">HOME</ForwardLink>
-    <ForwardLink to="/headphones">HEADPHONES</ForwardLink>
-    <ForwardLink to="/speakers">SPEAKERS</ForwardLink>
-    <ForwardLink to="/earphones">EARPHONES</ForwardLink>
-  </Wrapper>
-);
+const Nav = () => {
+
+  const handleScrollTop = () => {
+    window.scrollTo(0, 0);
+  }
+
+  return (
+    <Wrapper>
+      <ForwardLink to="/" onClick={handleScrollTop}>HOME</ForwardLink>
+      <ForwardLink to="/headphones" onClick={handleScrollTop}>HEADPHONES</ForwardLink>
+      <ForwardLink to="/speakers" onClick={handleScrollTop}>SPEAKERS</ForwardLink>
+      <ForwardLink to="/earphones" onClick={handleScrollTop}>EARPHONES</ForwardLink>
+    </Wrapper>
+  );
+}
 
 export default Nav;

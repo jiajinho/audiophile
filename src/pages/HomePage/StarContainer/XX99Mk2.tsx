@@ -3,7 +3,7 @@ import { useThree } from '@react-three/fiber';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
-const path = "/static/gltf/xx99mk2.glb";
+const path = "/static/gltf/xx99mk2_v1.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -47,7 +47,7 @@ const XX99Mk2 = () => {
   useEffect(() => {
     //Re-adjust the camera position of OrbitControl
     three.camera.position.set(0, 0, 10);
-  }, []);
+  }, [three]);
 
   return (
     <group dispose={null}>
@@ -204,8 +204,6 @@ const XX99Mk2 = () => {
           material={materials.Leather2}
         />
       </group>
-
-
     </group>
   )
 }

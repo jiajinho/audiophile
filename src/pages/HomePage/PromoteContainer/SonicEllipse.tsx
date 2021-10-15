@@ -19,7 +19,7 @@ const SonicEllipse = ({ radius, delay }: {
   /**
    * Not hook
    */
-  const pulseInterval = 2000;
+  const pulseInterval = 1500;
 
   /**
    * Hooks
@@ -41,7 +41,7 @@ const SonicEllipse = ({ radius, delay }: {
 
     document.addEventListener("visibilitychange", onTabChange);
     return () => document.removeEventListener("visibilitychange", onTabChange);
-  }, []);
+  }, [api]);
 
   /**
    * Render

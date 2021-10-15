@@ -98,7 +98,10 @@ const CategoryPage = () => {
   /**
    * Not hooks
    */
-  const handleProductLink = (product: string) => history.push(`${category}/${product}`);
+  const handleProductLink = (product: string) => {
+    history.push(`${category}/${product}`);
+    window.scrollTo(0, 0);
+  }
 
   /**
    * Render
@@ -129,7 +132,7 @@ const CategoryPage = () => {
               <Button
                 text="SEE PRODUCT"
                 theme="primary"
-                onClick={() => handleProductLink(id)}
+                onClick={() => { handleProductLink(id) }}
               />
             </TextContainer>
           </Container>

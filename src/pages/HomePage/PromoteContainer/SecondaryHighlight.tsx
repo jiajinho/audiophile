@@ -1,9 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components/macro';
 import { useHistory } from 'react-router-dom';
 
 import { viewport } from '../../../common/config';
-import { MediaContext } from '../../../common/contexts';
 import ImageCard, { Wrapper as _ImageCard, Image } from '../../../components/ImageCard';
 import Button from '../../../components/Button';
 
