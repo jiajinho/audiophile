@@ -3,7 +3,7 @@ Challenge provided by Frontend Mentor. [[Source]](https://www.frontendmentor.io/
 
 The gist of the challenge is to build a website/app and get it looking as close to the design provided as possible.
 
-The main function of the website is to showcase and introduce a mock-up shop called 'Audiophile', an e-commerce website specialized in audio equipments such as headphones and speakers.
+The main function of the website is to showcase and introduce a mock-up shop called 'Audiophile', an e-commerce website specialized in audio accessories such as headphones and speakers.
 
 View the website here: [https://audiophile-1015.netlify.app/](https://audiophile-1015.netlify.app/)
 
