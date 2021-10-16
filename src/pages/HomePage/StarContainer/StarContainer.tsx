@@ -6,6 +6,8 @@ import { OrbitControls, useProgress } from '@react-three/drei';
 import { useHistory } from 'react-router-dom';
 //import { useControls } from 'leva';
 
+import Test from './Test';
+
 import { viewport, css } from '../../../common/config';
 import { MediaContext } from '../../../common/contexts';
 import Button, { Wrapper as _Button } from '../../../components/Button';
@@ -125,6 +127,7 @@ const StarContainer = () => {
         <Suspense fallback={null}>
           <XX99Mk2 media={media} />
         </Suspense>
+
       </Canvas>
 
       <TextContainer
