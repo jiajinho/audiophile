@@ -5,7 +5,7 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import { Media } from '../../../common/contexts';
 
-const path = "/static/gltf/hinge4.glb";
+const path = "/static/gltf/hinge3.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
