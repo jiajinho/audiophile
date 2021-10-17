@@ -5,7 +5,7 @@ import { GLTF } from 'three/examples/jsm/loaders/GLTFLoader';
 
 import { Media } from '../../../common/contexts';
 
-const path = "/static/gltf/hinge3.glb";
+const path = "/static/gltf/hinge.glb";
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -46,7 +46,7 @@ const XX99Mk2 = ({ media }: { media: Media }) => {
   /**
    * Hooks
    */
-  const { nodes, materials } = useGLTF(path, "https://www.gstatic.com/draco/v1/decoders/*") as any as GLTFResult;
+  const { nodes, materials } = useGLTF(path) as any as GLTFResult;
   const three = useThree();
 
   useEffect(() => {
