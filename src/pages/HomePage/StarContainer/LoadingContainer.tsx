@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import Loading, { Wrapper as _Loading } from '../../../common/svg/Loading';
+
 const Wrapper = styled.div`
   position: absolute;
   z-index: 10;
@@ -13,8 +15,13 @@ const Wrapper = styled.div`
   cursor: auto;
 
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  ${_Loading} {
+    margin: 20rem 0;
+  }
 `;
 
 const Bar = styled.div`
@@ -45,12 +52,16 @@ const Fill = styled.div(({ $width }: { $width: number }) => `
 `);
 
 
-const LoadingContainer = ({ progress }: { progress: number }) =>
+const LoadingContainer = ({ progress }: { progress: number }) => (
   <Wrapper>
+    <Loading />
+
     <Bar>
       <Fill $width={progress} />
     </Bar>
   </Wrapper>
+);
+
 
 
 export default LoadingContainer;
