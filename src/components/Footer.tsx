@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/macro';
+import { useHistory } from 'react-router-dom';
 
 import { css, viewport, strings } from '../common/config';
 import Nav from './Nav';
@@ -60,6 +61,7 @@ const TopContainer = styled.div`
 
 const Audiophile = styled.img`
   margin: 45rem 0;
+  cursor: pointer;
 `;
 
 const BottomContainer = styled.div`
@@ -143,36 +145,48 @@ const SocialMedia = styled.div`
   }
 `;
 
-const Footer = () => (
-  <Wrapper>
-    <OrangeLine />
+const Footer = () => {
+  const history = useHistory();
 
-    <TopContainer>
-      <Audiophile src="/static/shared/audiophile.svg" alt="Audiophile" />
+  const handleClick = () => {
+    history.push("/");
+    window.scrollTo(0, 0);
+  }
 
-      <Nav />
-    </TopContainer>
+  return (
+    <Wrapper>
+      <OrangeLine />
 
-    <BottomContainer>
-      <Description>
-        {strings.footer.description}
-      </Description>
+      <TopContainer>
+        <Audiophile
+          src="/static/shared/audiophile.svg"
+          alt="Audiophile"
+          onClick={handleClick}
+        />
 
-      <CopyrightContainer>
-        <Copyright>
-          {strings.footer.copyright}
-        </Copyright>
+        <Nav />
+      </TopContainer>
 
-        <SocialMedia>
-          <Facebook onClick={() => toast("🦄 Clicked on Facebook!")} />
-          <Instagram onClick={() => toast("🦄 Clicked on Instagram!")} />
-          <Twitter onClick={() => toast("🦄 Clicked on Twitter!")} />
-        </SocialMedia>
-      </CopyrightContainer>
-    </BottomContainer>
+      <BottomContainer>
+        <Description>
+          {strings.footer.description}
+        </Description>
 
-  </Wrapper>
-);
+        <CopyrightContainer>
+          <Copyright>
+            {strings.footer.copyright}
+          </Copyright>
 
+          <SocialMedia>
+            <Facebook onClick={() => toast("🦄 Clicked on Facebook!")} />
+            <Instagram onClick={() => toast("🦄 Clicked on Instagram!")} />
+            <Twitter onClick={() => toast("🦄 Clicked on Twitter!")} />
+          </SocialMedia>
+        </CopyrightContainer>
+      </BottomContainer>
+
+    </Wrapper>
+  );
+}
 
 export default Footer;

@@ -6,12 +6,10 @@ import { OrbitControls, useProgress } from '@react-three/drei';
 import { useHistory } from 'react-router-dom';
 //import { useControls } from 'leva';
 
-import Test from './Test';
-
 import { viewport, css } from '../../../common/config';
 import { MediaContext } from '../../../common/contexts';
 import Button, { Wrapper as _Button } from '../../../components/Button';
-import Loading, { Wrapper as _Loading } from '../../../common/svg/Loading';
+import LoadingContainer from './LoadingContainer';
 import XX99Mk2 from './XX99Mk2';
 
 const Wrapper = styled.div`
@@ -54,23 +52,6 @@ const TextContainer = styled(animated.div)(({ $drag }: { $drag: boolean }) => `
   }
 `);
 
-const LoadingContainer = styled.div(({ $loaded }: { $loaded: boolean }) => `
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-
-  background: black;
-  display: ${$loaded ? "none" : "flex"};
-  align-items: center;
-  justify-content: center;
-
-  ${_Loading} {
-    height: 80rem;
-  }
-`);
-
 const StarContainer = () => {
   /**
    * Hooks
@@ -106,6 +87,14 @@ const StarContainer = () => {
   }, [drag, media, textAPI]);
 
   /**
+   * Not hooks
+   */
+  const handleClick = () => {
+    history.push("/headphones/xx99-mk2");
+    window.scrollTo(0, 0);
+  }
+
+  /**
    * Render
    */
   return (
@@ -113,6 +102,8 @@ const StarContainer = () => {
       onMouseDown={() => setDrag(true)}
       onPointerDown={() => setDrag(true)}
     >
+      {progress !== 100 && <LoadingContainer progress={progress} />}
+
       <Canvas style={{ width: media.lg ? "140%" : "100%" }}>
         <ambientLight intensity={1} />
         <directionalLight intensity={1} position={[1, -1, 1]} castShadow />
@@ -146,13 +137,9 @@ const StarContainer = () => {
         <Button
           text="SEE PRODUCT"
           theme="primary"
-          onClick={() => history.push('/headphones/xx99-mk2')}
+          onClick={handleClick}
         />
       </TextContainer>
-
-      <LoadingContainer $loaded={progress === 100}>
-        <Loading />
-      </LoadingContainer>
     </Wrapper>
   );
 

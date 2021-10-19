@@ -23,8 +23,14 @@ const ForwardLink = styled(Link)`
   letter-spacing: 1rem;
   font-weight: bold;
 
+  transition: .25s color;
+
   :not(:first-child) {
     margin-top: 30rem;
+  }
+
+  :hover {
+    color: var(--theme-primary);
   }
 
   @media screen and (min-width: ${viewport.sm}) {

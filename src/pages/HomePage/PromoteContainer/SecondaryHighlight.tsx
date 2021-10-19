@@ -70,6 +70,11 @@ const SecondaryHighlight = ({ imgSrc, imgAlt, title, description, linkTo }: {
 
   const history = useHistory();
 
+  const handleClick = () => {
+    history.push(linkTo);
+    window.scrollTo(0, 0);
+  }
+
   return (
     <Wrapper>
       <ImageCard
@@ -84,7 +89,7 @@ const SecondaryHighlight = ({ imgSrc, imgAlt, title, description, linkTo }: {
         <Button
           text="SEE PRODUCT"
           theme="neutral-inverted"
-          onClick={() => history.push(linkTo)}
+          onClick={handleClick}
         />
       </TextContainer>
     </Wrapper>
